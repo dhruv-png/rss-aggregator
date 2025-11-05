@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  rss-aggregator:
+    build: .
+    container_name: rss-aggregator
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./app.py:/app/app.py
+      - ./templates:/app/templates
+      - ./static:/app/static
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+    restart: unless-stopped
+networks: {}
